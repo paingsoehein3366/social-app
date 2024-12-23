@@ -5,13 +5,15 @@ import Image from "./image";
 import ArrowLeft from "./ArrowLeft";
 import Mail from "./Mail";
 import Lock from "./Lock";
+import UserIcon from "./user";
 
 const icons = {
   home: Home,
   image: Image,
   arrowLeft: ArrowLeft,
   mail: Mail,
-  lock:Lock,
+  lock: Lock,
+  user: UserIcon,
 }
 const Icon = ({name,...props}:any) => {
   const IconComponent = icons[name];

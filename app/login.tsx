@@ -8,7 +8,7 @@ import { hp, wp } from "@/helpers/common";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useRef, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
 
 const Login = () => {
   const router = useRouter();
@@ -17,7 +17,11 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = () => {
-
+    if (!emailRef.current || !passwordRef.current) {
+      Alert.alert("Login","please fill all the fields")
+    } else {
+      setIsLoading(true)
+    }
   }
 
   return (
@@ -49,6 +53,12 @@ const Login = () => {
           </Text>
           <Button title="Login" loading={isLoading} onPress={onSubmit} />
         </View>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Don't have an account?</Text>
+          <Pressable onPress={() => router.push("/signUp")}>
+            <Text style={[styles.footerText,{color:theme.colors.primaryDark,fontWeight:theme.fonts.semibold as any}]}>Sign Up</Text>
+          </Pressable>
+        </View>
       </View>
     </ScreenWrapper>
   );
@@ -70,9 +80,23 @@ const styles = StyleSheet.create({
   form: {
     gap: 30,
     justifyContent: "center",
-   
+    height:hp(95),
   },
   forgotPassword: {
     textAlign: "right",
-  }
+  },
+  footer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 5,
+    marginTop: 10,
+  },
+  footerText: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
 })

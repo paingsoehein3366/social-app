@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
-    fontSize: hp(3.5),
-    fontWeight: theme.fonts.bold as any,
+    fontSize: hp(4),
+    fontWeight: theme.fonts.semibold as any,
   }
 });
