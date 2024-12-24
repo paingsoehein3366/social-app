@@ -27,8 +27,13 @@ const SingUp = () => {
     const { data, error } = await supabase.auth.signUp({
       email: emailRef.current.trim(),
       password: passwordRef.current.trim(),
+      options: {
+        data: {
+          name: nameRef.current.trim(),
+        },
+      }
     });
-    console.log("data: ",data,"error: ", error);
+    // console.log("data: ",data,"error: ", error);
     if (error) {
       Alert.alert("Sing Up", error.message);
       setIsLoading(false);
