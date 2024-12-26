@@ -12,6 +12,7 @@ const Input = (props: any) => {
         ref={props.inputRef && props.inputRef}
         {...props}
       />
+      {props.rightSelaction && props.rightSelaction}
     </View>
   );
 };

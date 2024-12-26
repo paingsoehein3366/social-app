@@ -6,6 +6,8 @@ import ArrowLeft from "./ArrowLeft";
 import Mail from "./Mail";
 import Lock from "./Lock";
 import UserIcon from "./user";
+import Eye from "./Eye";
+import ShowEye from "./ShowEye";
 
 const icons = {
   home: Home,
@@ -14,6 +16,8 @@ const icons = {
   mail: Mail,
   lock: Lock,
   user: UserIcon,
+  eye: Eye,
+  showEye:ShowEye,
 }
 const Icon = ({name,...props}:any) => {
   const IconComponent = icons[name];

@@ -16,6 +16,7 @@ const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
   const onSubmit = async() => {
     if (!emailRef.current || !passwordRef.current) {
@@ -27,11 +28,13 @@ const Login = () => {
       password: passwordRef.current.trim(),
     });
     setIsLoading(false);
-    // console.log("data: ",data,"error: ", error);
+    console.log("data: ",data,"error: ", error);
     if (error) {
       Alert.alert("Login", error.message);
       setIsLoading(false);
       return;
+    } else {
+      Alert.alert("login success!")
     }
   }
 
@@ -55,9 +58,10 @@ const Login = () => {
           />
           <Input
             icon={<Icon name="lock" size={26} strokeWidth={1.6} color={theme.colors.text} />}
+            rightSelaction={<Icon onPress={() => setShowPassword(!showPassword)} name={showPassword ? "eye" : "showEye"} size={20} strokeWidth={1.5} color={theme.colors.text} />}
              placeholder="Enter your password"
             onChangeText={(value: string) => passwordRef.current = value}
-            secureTextEntry
+            secureTextEntry={showPassword}
           />
           <Text style={styles.forgotPassword}>
             Forgot your password?

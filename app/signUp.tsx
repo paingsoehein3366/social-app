@@ -17,6 +17,7 @@ const SingUp = () => {
   const passwordRef = useRef("");
   const nameRef = useRef("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
 
   const onSubmit = async() => {
     if (!emailRef.current || !passwordRef.current) {
@@ -33,7 +34,7 @@ const SingUp = () => {
         },
       }
     });
-    // console.log("data: ",data,"error: ", error);
+    console.log("data: ",data,"error: ", error);
     if (error) {
       Alert.alert("Sing Up", error.message);
       setIsLoading(false);
@@ -67,9 +68,10 @@ const SingUp = () => {
           />
           <Input
             icon={<Icon name="lock" size={26} strokeWidth={1.6} color={theme.colors.text} />}
+            rightSelaction={<Icon onPress={() => setShowPassword(!showPassword)} name={showPassword ? "eye" : "showEye"} size={20} strokeWidth={1.5} color={theme.colors.text} />}
              placeholder="Enter your password"
             onChangeText={(value: string) => passwordRef.current = value}
-            secureTextEntry
+            secureTextEntry={showPassword}
           />
           <Button title="Sing Up" loading={isLoading} onPress={onSubmit} />
         </View>
